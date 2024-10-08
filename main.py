@@ -1,8 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
 
-##search = input("O que você quer procurar?\n")
-search = "vox machina"
+search = input("O que você quer procurar?\n")
+#search = "vox machina"
 
 params = {"q": search}
 headers = {
@@ -24,11 +24,12 @@ for item in links:
         print("text: ", item_text)
         print("href: ", item_href)
         print("Descrição: ", item.find("a").parent.parent.find("p").text)
-        print("\n")
-
 #        children = item.children
 #        for child in children:
 #            print("Child: ", child)
+        children = item.find("h2")
+        print("Irmão anterior = ", children.previous_sibling)
+        print("\n")
 
 f = open("arquivo.html", "wb")
 
